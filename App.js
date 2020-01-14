@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Image, FlatList, TouchableOpacity} from 'react-native';
+import List from './components/List';
 
 const mediaArray = [
   {
@@ -32,37 +33,67 @@ const mediaArray = [
 ];
 
 const App = () => {
- return (
-   <View style={styles.container}>
-     <Text>Open up App.js to start working on your app!</Text>
-     <FlatList
-    data={mediaArray}
-    renderItem={({item}) => {
-      return (
-        <TouchableOpacity>
-          <Image
-            style={{width: 100, height: 100}}
-            source={{uri: item.thumbnails.w160}}
-          />
-          <View>
-            <Text>{item.title}</Text>
-            <Text>{item.description}</Text>
-          </View>
-        </TouchableOpacity>
-      );
-    }}
-  />
-   </View>
- );
+  return (
+    <List mediaArray={mediaArray}/>
+  );
 };
 
-const styles = StyleSheet.create({
- container: {
-   flex: 1,
-   backgroundColor: '#fff',
-   alignItems: 'center',
-   justifyContent: 'center',
- },
-});
-
 export default App;
+
+// <View style={styles.container}>
+//   <Text>Open up App.js to start working on your app!</Text>
+// </View>
+
+// <View style={{marginTop: 19}}>
+//   <FlatList
+//     data={mediaArray}
+//     renderItem={({item}) => {
+//       return (
+//         <TouchableOpacity>
+//           <View style={styles.container}>
+//             <Image
+//               style={styles.image}
+//               source={{uri: item.thumbnails.w160}}
+//             />
+//             <View style={styles.details}>
+//               <Text style={styles.title}>{item.title}</Text>
+//               <Text style={styles.description}>{item.description}</Text>
+//             </View>
+//           </View>
+//         </TouchableOpacity>
+//       );
+//     }}
+//   />
+// </View>
+
+// const styles = StyleSheet.create({
+//   container: {
+//     // backgroundColor: '#fff',
+//     marginTop: 5,
+//     paddingTop: 10,
+//     flex: 1,
+//     flexDirection: 'row',
+//     backgroundColor: '#f9c2ff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+//   details: {
+//     width: '45%',
+//     flex: 1,
+//     flexDirection: 'column',
+//     padding: 10,
+//   },
+//   image: {
+//     width: '20%',
+//     height: 200,
+//     flex: 1,
+//     flexDirection: 'row',
+//     margin: 10,
+//   },
+//   title: {
+//     fontWeight: 'bold',
+//   },
+//   description: {
+//     fontSize: 11,
+//   },
+// });
