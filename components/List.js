@@ -1,12 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { View, FlatList } from 'react-native';
 import ListItem from './ListItem';
+import {MediaContext} from '../contexts/MediaContext';
+import { useFetch } from "../hooks/APIHooks.js"
 
-const List = (props) => {
+
+const List = () => {
+  const [ media, setMedia ] = useContext(MediaContext);
+  const [ data, loading] = useFetch ('https://raw.githubusercontent.com/mattpe/wbma/master/docs/assets/test.json');
+  console.log('List', data, loading);
+  setMedia(data);
     return (
       <View style={{marginTop: 19}}>
         <FlatList
-          data={props.mediaArray}
+          data={media}
+          keyExtractor = {(item, index) => index.toString()}
           renderItem={({item}) => {
             return (
               <ListItem item={item}/>
@@ -18,16 +26,3 @@ const List = (props) => {
 };
 
 export default List;
-
-// <TouchableOpacity>
-  //   <View style={styles.container}>
-  //     <Image
-  //       style={styles.image}
-  //       source={{uri: item.thumbnails.w160}}
-  //     />
-  //     <View style={styles.details}>
-  //       <Text style={styles.title}>{item.title}</Text>
-  //       <Text style={styles.description}>{item.description}</Text>
-  //     </View>
-  //   </View>
-// </TouchableOpacity>
