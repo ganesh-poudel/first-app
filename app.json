@@ -1,3 +1,4 @@
+
 {
   "expo": {
     "name": "wbma-firstapp-01",
@@ -25,6 +26,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "androidStatusBar": {
+      "backgroundColor": "#C2185B"
     }
   }
 }
