@@ -1,12 +1,12 @@
-import {useState} from 'react';
+import { useState } from "react";
 
 const useSignUpForm = () => {
   const [inputs, setInputs] = useState({});
-  const handleUsernameChange = (text) => {
-    setInputs((inputs) => {
+  const handleUsernameChange = text => {
+    setInputs(inputs => {
       return {
         ...inputs,
-        username: text,
+        username: text
       };
     });
   };
@@ -18,11 +18,11 @@ const useSignUpForm = () => {
   //     };
   //   });
   // };
-  const handlePasswordChange = (text) => {
-    setInputs((inputs) => {
+  const handlePasswordChange = text => {
+    setInputs(inputs => {
       return {
         ...inputs,
-        password: text,
+        password: text
       };
     });
   };
@@ -36,20 +36,20 @@ const useSignUpForm = () => {
   //   });
   // };
 
-  const handleFullnameChange = (text) => {
-    setInputs((input) => {
+  const handleFullnameChange = text => {
+    setInputs(input => {
       return {
         ...inputs,
-        fullname: text,
+        fullname: text
       };
     });
   };
 
-  const handleEmailChange = (text) => {
-    setInputs((input) => {
+  const handleEmailChange = text => {
+    setInputs(input => {
       return {
         ...inputs,
-        email: text,
+        email: text
       };
     });
   };
@@ -59,7 +59,7 @@ const useSignUpForm = () => {
     handlePasswordChange,
     handleFullnameChange,
     handleEmailChange,
-    inputs,
+    inputs
   };
 };
 

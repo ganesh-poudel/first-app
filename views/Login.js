@@ -1,25 +1,30 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, Button, AsyncStorage} from 'react-native';
-import PropTypes from 'prop-types';
-import {login, register} from '../hooks/APIHooks.js';
-import FormTextInput from '../components/FormTextInupt.js';
-import useSignUpForm from '../hooks/LoginHooks';
+import React, { useState } from "react";
+import { StyleSheet, View, Text, Button, AsyncStorage } from "react-native";
+import PropTypes from "prop-types";
+import { login, register } from "../hooks/APIHooks.js";
+import FormTextInput from "../components/FormTextInput.js";
+import useSignUpForm from "../hooks/LoginHooks";
 
-const Login = (props) => {
-  const [error, setError] = useState('');
+const Login = props => {
+  const [error, setError] = useState("");
   //props is needed for navigation
-  const {handleUsernameChange,
+  const {
+    handleUsernameChange,
     handlePasswordChange,
     handleEmailChange,
     handleFullnameChange,
-    inputs} = useSignUpForm();
+    inputs
+  } = useSignUpForm();
   const signInAsync = async () => {
     try {
-      const user = await login({username: inputs.username, password: inputs.password});
-      console.log('Login', user.token);
-      await AsyncStorage.setItem('userToken', user.token);
-      await AsyncStorage.setItem('user', JSON.stringify(user.user));
-      props.navigation.navigate('App');
+      const user = await login({
+        username: inputs.username,
+        password: inputs.password
+      });
+      console.log("Login", user.token);
+      await AsyncStorage.setItem("userToken", user.token);
+      await AsyncStorage.setItem("user", JSON.stringify(user.user));
+      props.navigation.navigate("App");
     } catch (e) {
       console.log(e.message);
     }
@@ -48,23 +53,21 @@ const Login = (props) => {
         <Text>Login</Text>
         <View>
           <FormTextInput
-            autoCapitalize='none'
-            placeholder='username'
+            autoCapitalize="none"
+            placeholder="username"
             handler={handleUsernameChange}
           />
           <FormTextInput
-            autoCapitalize='none'
-            placeholder='password'
+            autoCapitalize="none"
+            placeholder="password"
             secureTextEntry={true}
             handler={handlePasswordChange}
           />
           <Button
-            title='Sign in'
-            onPress={
-              () => {
-                signInAsync()
-              }
-            }
+            title="Sign in"
+            onPress={() => {
+              signInAsync();
+            }}
           />
         </View>
       </View>
@@ -72,32 +75,30 @@ const Login = (props) => {
         <Text>Register</Text>
         <View>
           <FormTextInput
-            autoCapitalize='none'
-            placeholder='username'
+            autoCapitalize="none"
+            placeholder="username"
             onChangeText={handleUsernameChange}
           />
           <FormTextInput
-            autoCapitalize='none'
-            placeholder='email'
+            autoCapitalize="none"
+            placeholder="email"
             onChangeText={handleEmailChange}
           />
           <FormTextInput
-            autoCapitalize='none'
-            placeholder='fullname'
+            autoCapitalize="none"
+            placeholder="fullname"
             onChangeText={handleFullnameChange}
           />
           <FormTextInput
-            autoCapitalize='none'
-            placeholder='password'
+            autoCapitalize="none"
+            placeholder="password"
             onChangeText={handlePasswordChange}
           />
           <Button
-            title='Sign in'
-            onPress={
-              () => {
-                registerAsync()
-              }
-            }
+            title="Sign in"
+            onPress={() => {
+              registerAsync();
+            }}
           />
           <Text>{error}</Text>
         </View>
@@ -109,10 +110,10 @@ const Login = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 40
   },
   form: {
     padding: 20
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
 
 // proptypes here
 Login.propTypes = {
-  navigation: PropTypes.object,
+  navigation: PropTypes.object
 };
 
 export default Login;

@@ -1,18 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, AsyncStorage, Button} from 'react-native';
+import React, { useState, useEffect } from "react";
+import { StyleSheet, View, Text, AsyncStorage, Button } from "react-native";
 
-const Profile = (props) => {
+const Profile = props => {
   const [user, setUser] = useState({});
   const signOutAsync = async () => {
     await AsyncStorage.clear();
-    // eslint-disable-next-line react/prop-types
-    props.navigation.navigate('Auth');
+    props.navigation.navigate("Auth");
   };
   const getUser = async () => {
-    const userJSON = await AsyncStorage.getItem('user');
-    console.log('userJSON', userJSON);
+    const userJSON = await AsyncStorage.getItem("user");
+    console.log("userJSON", userJSON);
     const user = JSON.parse(userJSON);
-    console.log('user', user);
+    console.log("user", user);
     setUser(() => {
       return user;
     });
@@ -25,10 +24,7 @@ const Profile = (props) => {
       <Text>username: {user.username}</Text>
       <Text>Full Name: {user.full_name}</Text>
       <Text>Email: {user.email}</Text>
-      <Button
-        title='Logout!'
-        onPress={signOutAsync}
-      />
+      <Button title="Logout!" onPress={signOutAsync} />
     </View>
   );
 };
@@ -36,11 +32,11 @@ const Profile = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 40,
-  },
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 40
+  }
 });
 
 export default Profile;
